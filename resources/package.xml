@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+    <title>Template Mod</title>
+    <id>TemplateMod</id>
+    <author>You!</author>
+    <loadPriority>69</loadPriority>
+    <description>
+        Test Mod
+        
+    </description>
+    <tags>General,Story,Quest</tags>
+    <version>0.23.67</version>
+    <builtin>false</builtin>
+    <visibility>Private</visibility>
+</Meta>
