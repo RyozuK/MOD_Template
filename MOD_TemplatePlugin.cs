@@ -5,13 +5,14 @@ using BepInEx;
 using HarmonyLib;
 using ReflexCLI;
 
-namespace MOD_MoreObjs;
+//Change this to mach your project
+namespace MOD_Template;
 
 internal static class ModInfo
 {
     /* First, let's edit these details here.  The Guid is arbitrary, but should be unique.
-     * One way to achieve that is to use what would be the path to your github project.
-     * In this case, change the 3rd part to your github username, and the last part to your project's name
+     * One way to achieve that is to use what would be the path to your GitHub project.
+     * In this case, change the 3rd part to your GitHub username, and the last part to your project's name
      * Let's also change the Name itself.  Version can be changed as you see fit
      */
     internal const string Guid = "com.github.ryozuk.template";
@@ -60,6 +61,7 @@ public class MOD_TemplatePlugin : BaseUnityPlugin
         return stackFrame.GetMethod().Name;
     }
     
+    //Sometimes, you just want to see what information an object contains.  This can be a useful way keep track of it
     public static void printFields<T>(T baseItem) where T : new() {
         System.Reflection.FieldInfo[] fields = baseItem.GetType().GetFields();
         String baseText = baseItem.ToString();
@@ -69,14 +71,13 @@ public class MOD_TemplatePlugin : BaseUnityPlugin
     }
     private void Start()
     {
-        UnityEngine.Debug.Log(ModInfo.Name + ": Mod Start()");
+        MOD_TemplatePlugin.LogInfo(" Mod Start()");
         var harmony = new Harmony(ModInfo.Guid);
         harmony.PatchAll();
     }
 }
 
 //This serves as an example of a postfix patch.
-
 [HarmonyPatch(typeof(Zone))]
 [HarmonyPatch(nameof(Zone.Activate))]
 class ZonePatch : EClass {
