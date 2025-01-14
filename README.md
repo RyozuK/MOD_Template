@@ -11,7 +11,9 @@
 * Let's turn on the unity console, if we haven't already
 
 * Explanation of resources folder
-    * Edit package.xml / preview.jpg
+  * All contents is copied with each build
+  * Mod folder is cleaned with each build
+  * Edit package.xml / preview.jpg
 
 * Editing sources
   * Rename MOD_Template.csproj
@@ -24,3 +26,10 @@
     * Loggers
     * Example postfix
     * Example console command
+
+* Publishing
+  * Where to publish inside Elin
+  * Each publish will contain only the mod folder's files
+  * Set dependencies if used
+  * It's up to you to update the version/change log
+  * Other best practices for steam mod page

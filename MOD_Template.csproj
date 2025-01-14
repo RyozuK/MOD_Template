@@ -76,7 +76,7 @@
     </PropertyGroup>
     
     <!-- Remove the existing mod directory, to avoid loose unused files -->
-    <Remove Directories="$(ModFolder)" />
+    <RemoveDir Directories="$(ModFolder)" />
 
     <!-- Create the mod directory -->
     <MakeDir Directories="$(ModFolder)" />
