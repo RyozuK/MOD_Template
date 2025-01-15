@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx;
 using HarmonyLib;
 using ReflexCLI;
@@ -31,23 +32,24 @@ public class MOD_TemplatePlugin : BaseUnityPlugin
     
     private void Awake()
     {
+        Instance = this;
         Assembly executingAssembly = Assembly.GetExecutingAssembly();
         CommandRegistry.assemblies.Add(executingAssembly);
     }
     
-    public static void LogDev(object payload)
+    public static void LogDev(object payload, [CallerLineNumber] int line = 0)
     {
         //Useful for temporary debugging messages during development
         if (ModInfo.DevMode)
         {
-            Instance!.Logger.LogWarning(ModInfo.Name +"::"+GetCallerInfo()+"::" + payload);
+            Instance!.Logger.LogWarning(ModInfo.Name + "::" + GetCallerInfo() + $"({line})" + "::" + payload);
         }
     }
 
-    public static void LogInfo(object payload)
+    public static void LogInfo(object payload, [CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
     {
         //Useful for information that will be helpful to debug when a *user* encounters problems.
-        Instance!.Logger.LogInfo(ModInfo.Name +"::"+GetCallerInfo()+"::" + payload);
+        Instance!.Logger.LogInfo(ModInfo.Name +"::" + caller + $"({line})" + "::" + payload);
     }
     
     private static string GetCallerInfo()
@@ -55,24 +57,26 @@ public class MOD_TemplatePlugin : BaseUnityPlugin
         StackTrace stackTrace = new StackTrace(true);
         StackFrame stackFrame = stackTrace.GetFrame(2); // Skip the current and calling method
 
-        var reflectedType = stackFrame.GetMethod().ReflectedType;
+        Type reflectedType = stackFrame.GetMethod().ReflectedType;
         if (reflectedType != null)
             return $"{reflectedType.Name}.{stackFrame.GetMethod().Name}";
         return stackFrame.GetMethod().Name;
     }
     
-    //Sometimes, you just want to see what information an object contains.  This can be a useful way keep track of it
-    public static void printFields<T>(T baseItem) where T : new() {
+    //Sometimes, you just want to see what information an object contains.  This can be a useful way to see information
+    public static string GetFields<T>(T baseItem) where T : new() {
         System.Reflection.FieldInfo[] fields = baseItem.GetType().GetFields();
-        String baseText = baseItem.ToString();
+        string baseText = baseItem.ToString();
         foreach (System.Reflection.FieldInfo fieldInfo in fields) {
-            MOD_TemplatePlugin.LogDev(fieldInfo.Name + " : " + baseItem.GetField<object>(fieldInfo.Name));
+            baseText += "\n" + fieldInfo.Name + " : " + baseItem.GetField<object>(fieldInfo.Name);
         }
+        return baseText;
     }
+    
     private void Start()
     {
-        MOD_TemplatePlugin.LogInfo(" Mod Start()");
-        var harmony = new Harmony(ModInfo.Guid);
+        MOD_TemplatePlugin.LogInfo("Mod Start()");
+        Harmony harmony = new Harmony(ModInfo.Guid);
         harmony.PatchAll();
     }
 }

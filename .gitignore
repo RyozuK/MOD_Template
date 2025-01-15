@@ -1,0 +1,11 @@
+bin/
+obj/
+
+.DS_Store
+Thumbs.db
+
+Directory.Build.props
+/.idea/
+/.gitignore
+/Directory.Build.props.template
+/Folder.DotSettings.user

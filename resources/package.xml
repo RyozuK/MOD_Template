@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Meta>
     <title>Template Mod</title>
-    <id>TemplateMod</id>
+    <id>com.github.ryozuk.template</id>
     <author>You!</author>
     <loadPriority>69</loadPriority>
     <description>
