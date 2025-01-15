@@ -72,7 +72,7 @@ If your mod's resources folder only consists of a ``package.xml`` and ``preview.
     * Load priority determines what order mods should be loaded in.  For the most part, this shouldn't matter much.
     * Description is what the initial description of your mod will be when you publish to the Steam Workshop the first time.  Don't worry, you can edit it later.
     * Tags are used for Workshop organization, [there's an official list here](https://docs.google.com/document/u/2/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub)
-    * Version is the last version of the game itself that your mod was tested on.  Elin will avoid loading your mod on any version earlier than the one you sepcify here.
+    * Version is the last version of the game itself that your mod was tested on.  Elin will avoid loading your mod on any version earlier than the one you specify here.
     * Builtin should be left as false
     * Visibility on the workshop will be set to this with each publish.  You may want to change this to "public" once you get the hang of things. 
   * **Rename MOD_Template.csproj**: Rename this file to reflect the name of your mod.
