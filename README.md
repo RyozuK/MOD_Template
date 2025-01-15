@@ -1,15 +1,31 @@
 
 # Elin Mod Template
 
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Getting Started](#getting-started-one-time-setup)
+    - [Software to Install](#software-to-install)
+    - [Accounts to Make](#accounts-to-make)
+    - [Initial Setup](#initial-setup)
+    - [Enable Logging](#enable-logging)
+3. [Project Details](#project-details-per-mod-tasks)
+    - [Explanation of Resources Folder](#explanation-of-resources-folder)
+    - [Editing Sources](#editing-sources)
+4. [Explanation of Provided Code](#explanation-of-provided-code)
+5. [Publishing](#publishing)
+
+## Project Overview
+
 This project serves as a template for BepInEx mods for Elin, as well as a quickstart guide for first time modders.
 
 It assumes you have at least a baseline understanding of programming concepts.  A full programming tutorial is outside the scope of this document.  Also keep in mind, not every mod requires scripting.  Through the use of various no-script solutions such as CustomWhateverLoader, you can create content mods without the need to worry about script templates such as this one.  It's also assumed that you are working in Windows, since this is a Windows game.
 
-## Getting Started: One time tasks
+## Getting Started: One-Time Setup
 
 ### Software to install
-  * **JetBrains Rider**: A powerful IDE for .NET development. It is free for Noncommercial use.  There are a [variety of installation methods, start here](https://www.jetbrains.com/help/rider/Installation_guide.html)
-  * **Optional: Git CLI**: Useful for command-line interaction with your Git repositories.  You can [find more information here](https://github.com/git-guides/install-git)
+  * **JetBrains Rider**: A powerful IDE for .NET development. It is free for Noncommercial use.  [Installation Guide](https://www.jetbrains.com/help/rider/Installation_guide.html)
+  * **Optional: Git CLI**: Useful for command-line interaction with your Git repositories.  [Installation Guide](https://github.com/git-guides/install-git)
 
 ### Accounts to make
   * **GitHub**: Create a GitHub account if you don't already have one. GitHub allows you to host your mod project, collaborate with others, and keep track of your changes using version control.
@@ -32,12 +48,12 @@ It assumes you have at least a baseline understanding of programming concepts.  
 Let's turn on the Unity/BepInEx console, if we haven't already.  This will be extremely helpful for solving issues when debugging your mod later.
   * First, in your Steam Library, select Elin, click the Gear icon->"Manage"->"Browse Local Files".
   * Note this folder path for later, you'll need this information for later.
-  * Open the ``BepInEx\Config`` folder.  Inside there, open ``BepInEx.cfg``
+  * Open the ```BepInEx\Config``` folder.  Inside there, open ``BepInEx.cfg``
   * Around line 38, change ``Enabled = false`` to ``Enabled = true``.
 
 When all is said and done, you should have a folder containing the template, and have it opened in Rider.  Rider is likely saying there are errors at this point, we'll address those in a moment.
 
-## Project details: Tasks to perform with each new mod
+## Project Details: Per-Mod Tasks
 Before you begin modding, you'll need to make some initial changes to the provided files.  To start, let's make sure we understand that a project folder and a mod folder are separate things.  The project folder contains all the source code, resources, and information for the project, much of which isn't needed for the mod itself.  The mod folder is a separate folder that the game itself looks at to load information for the mod.  As such, placing the project folder itself into the game directory is a bad idea.
 
 When working on your mod, each time you build the mod, the provided build script will compile your source code into a DLL, copy the DLL to a folder in the game directory, as well as anything in the ``resources`` folder.  Elin will treat this folder as a mod, and within the game's mod browser, it will be labeled with a ``[Local]`` tag.  If any users install your mod via the workshop, it will be placed in a workshop provided folder somewhere else, so be careful when loading resources not to expect the files to be located in a specific folder within the game's folder itself. The folder containing your mod, after a build, will be something like ``Elin\Package\MOD_YourMod``
@@ -77,7 +93,7 @@ This template comes with a few handy bits built in already.
 
 Feel free to remove any of these features if they are not appropriate for your mod.
 
-* Publishing
+## Publishing
   * **Where to publish inside Elin**:
     * If you're satisfied with your mod and ready to publish it, you can find it within Elin itself in the mod viewer.  Clicking the mod should allow you to publish it.
   * **Each publish will contain only the mod folder's files**: Ensure only the necessary files are included in your build.
