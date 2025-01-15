@@ -87,3 +87,4 @@ Feel free to remove any of these features if they are not appropriate for your m
     * Consider creating and pinning discussion topics for bug reports, feature suggestions, or other feedback.
     * This game has an international userbase.  While the majority of players are Japanese, there are also Chinese and French players.  Consider localization for those languages as well.
     * Upload some preview images and update the description!  A good mod preview entices users to check it out.
+    * Consider including the URL to your GitHub repository for the mod.
