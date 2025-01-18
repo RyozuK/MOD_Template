@@ -7,9 +7,9 @@
 2. [Getting Started](#getting-started-one-time-setup)
     - [Software to Install](#software-to-install)
     - [Accounts to Make](#accounts-to-make)
-    - [Initial Setup](#initial-setup)
     - [Enable Logging](#enable-logging)
 3. [Project Details](#project-details-per-mod-tasks)
+    - [Initial Setup](#initial-setup)
     - [Explanation of Resources Folder](#explanation-of-resources-folder)
     - [Editing Sources](#editing-sources)
 4. [Explanation of Provided Code](#explanation-of-provided-code)
@@ -30,6 +30,19 @@ It assumes you have at least a baseline understanding of programming concepts.  
 ### Accounts to make
   * **GitHub**: Create a GitHub account if you don't already have one. GitHub allows you to host your mod project, collaborate with others, and keep track of your changes using version control.
 
+
+### Enable Logging
+Let's turn on the Unity/BepInEx console, if we haven't already.  This will be extremely helpful for solving issues when debugging your mod later.
+* First, in your Steam Library, select Elin, click the Gear icon->"Manage"->"Browse Local Files".
+* Note this folder path for later, you'll need this information for later.
+* Open the ```BepInEx\Config``` folder.  Inside there, open ``BepInEx.cfg``
+* Around line 38, change ``Enabled = false`` to ``Enabled = true``.
+
+## Project Details: Per-Mod Tasks
+Each mod project begins by creating a copy of the template, then modifying it to suit your needs.
+
+Before you begin modding, you'll need to make some initial changes to the provided files.  To start, let's make sure we understand that a project folder and a mod folder are separate things.  The project folder contains all the source code, resources, and information for the project, much of which isn't needed for the mod itself.  The mod folder is a separate folder that the game itself looks at to load information for the mod.  As such, placing the project folder itself into the game directory is a bad idea.
+
 ### Initial setup
   * **Use GitHub Template**: Start by using this template to copy the project repository to your own GitHub account. This will serve as the base for your mod development. Look for a big green button in the top right of this repository's page labeled ``Use This Template``
     * Now is a good time to do a little planning ahead, come up with a unique and descriptive name for your repository that reflects the kind of mod you plan to make.
@@ -44,17 +57,8 @@ It assumes you have at least a baseline understanding of programming concepts.  
 
   * If you really, truly, don't want to do any of that, you can simply download a ZIP of the template repository and unzip it.  I strongly suggest installing git and cloning it properly however: Version control saves sanity.
 
-### Enable Logging
-Let's turn on the Unity/BepInEx console, if we haven't already.  This will be extremely helpful for solving issues when debugging your mod later.
-  * First, in your Steam Library, select Elin, click the Gear icon->"Manage"->"Browse Local Files".
-  * Note this folder path for later, you'll need this information for later.
-  * Open the ```BepInEx\Config``` folder.  Inside there, open ``BepInEx.cfg``
-  * Around line 38, change ``Enabled = false`` to ``Enabled = true``.
 
 When all is said and done, you should have a folder containing the template, and have it opened in Rider.  Rider is likely saying there are errors at this point, we'll address those in a moment.
-
-## Project Details: Per-Mod Tasks
-Before you begin modding, you'll need to make some initial changes to the provided files.  To start, let's make sure we understand that a project folder and a mod folder are separate things.  The project folder contains all the source code, resources, and information for the project, much of which isn't needed for the mod itself.  The mod folder is a separate folder that the game itself looks at to load information for the mod.  As such, placing the project folder itself into the game directory is a bad idea.
 
 When working on your mod, each time you build the mod, the provided build script will compile your source code into a DLL, copy the DLL to a folder in the game directory, as well as anything in the ``resources`` folder.  Elin will treat this folder as a mod, and within the game's mod browser, it will be labeled with a ``[Local]`` tag.  If any users install your mod via the workshop, it will be placed in a workshop provided folder somewhere else, so be careful when loading resources not to expect the files to be located in a specific folder within the game's folder itself. The folder containing your mod, after a build, will be something like ``Elin\Package\MOD_YourMod``
 
